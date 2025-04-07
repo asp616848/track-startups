@@ -38,7 +38,6 @@ const Navbar = async() => {
                 </div>
             </nav>
             <div className='flex items-center gap-5'>
-
             </div>
         </header>
     )
