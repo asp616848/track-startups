@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@layer base {
+  button {
+    @apply text-black font-medium px-4 py-2 rounded-md hover:underline transition;
+  }
+
+  a {
+    @apply text-black font-medium hover:underline;
+  }
+}
+
+@layer utilities{
+  .heading{
+    @apply uppercase bg-black px-6 py-3 font-worksans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px]
+  }
+}
