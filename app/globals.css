@@ -403,7 +403,51 @@
         background-position: center;
         background-repeat: repeat-x;
     }
-
+    /* Navbar specific styles */
+    .navbar {
+        @apply px-5 py-4 bg-white border-b-[3px] border-black shadow sticky top-0 z-50;
+        font-family: var(--font-work-sans);
+    }
+    
+    .navbar-container {
+        @apply max-w-7xl mx-auto flex justify-between items-center;
+    }
+    
+    .navbar-logo {
+        @apply relative w-[60px] h-[60px] transition-transform duration-300 hover:scale-110;
+    }
+    
+    .navbar-links {
+        @apply flex items-center gap-6;
+    }
+    
+    .navbar-link {
+        @apply font-semibold text-[16px] relative px-2 py-1 transition-all duration-300;
+    }
+    
+    .navbar-link::after {
+        content: '';
+        @apply absolute left-0 bottom-0 w-0 h-[3px] transition-all duration-300;
+    }
+    
+    .navbar-link:hover::after {
+        @apply w-full;
+    }
+    
+    .navbar-button {
+        @apply border-[3px] border-black  px-5 py-2 rounded-full font-bold text-black shadow
+        hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-300;
+    }
+    
+    .navbar-create-button {
+        @apply border-[3px] border-black px-5 py-2 rounded-full font-bold bg-black text-white shadow 
+        hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-300;
+    }
+    
+    .navbar-profile {
+        @apply font-medium text-[16px] flex items-center gap-2 border-[3px] border-black px-4 py-2 rounded-full
+        hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-300;
+    }
     
 }
 

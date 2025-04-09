@@ -5,23 +5,23 @@ import {auth, signIn, signOut} from '@/auth'
 const Navbar = async() => {
     const session = await auth();
     return (
-        <header className='px-5 py-2 bg-white shadow-sm font-work-sans'>
-            <nav className='flex justify-between items-center'>
-                <Link href="/">
-                    <img src="/logo.png" alt="Logo" width={50} height={50} />
+        <header className='navbar'>
+            <nav className='navbar-container'>
+                <Link href="/" className='navbar-logo'>
+                    <img src="/logo.png" alt="Logo" width={60} height={60} />
                 </Link>
-                <div className='flex items-center gap-5'>
+                <div className='navbar-links'>
                     {session && session?.user ?(
                         <>
-                        <Link href="/startup/create">
-                            <span>Create</span>
+                        <Link href="/startup/create" className='navbar-create-button'>
+                            <span>Create Startup</span>
                         </Link>
                         <form action={async()=>{
                             'use server';
                             await signOut({redirectTo:"/"})}}>
-                            <button type="submit">LogOut</button>
+                            <button type="submit" className='navbar-button'>Log Out</button>
                         </form>
-                        <Link href={`/user/${session?.user?.id}`}>
+                        <Link href={`/user/${session?.user?.id}`} className='navbar-profile'>
                             <span>{session?.user?.name}</span>
                         </Link>
                         </>
@@ -31,14 +31,12 @@ const Navbar = async() => {
                             'use server';
                             await signIn('github')
                             }}>
-                            <button type="submit">Log In</button>
+                            <button type="submit" className='navbar-button'>Log In</button>
                         </form>
                     )
                 }
                 </div>
             </nav>
-            <div className='flex items-center gap-5'>
-            </div>
         </header>
     )
 }
