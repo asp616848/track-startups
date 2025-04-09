@@ -6,74 +6,49 @@
 @tailwind utilities;
 
 @theme {
-    
-    /* Colors */
-    --color-primary-100: #FFE8F0;
-    --color-primary: #EE2B69;
-    --color-secondary: #FBE843;
-    --color-black-100: #333333;
-    --color-black-200: #141413;
-    --color-black-300: #7D8087;
-    --color-black: #000000;
-    --color-white-100: #F7F7F7;
-    --color-white: #FFFFFF;
-
-    /* Border Radius */
-    --radius: 0.5rem;
-    --border-radius-lg: var(--radius);
-    --border-radius-md: calc(var(--radius) - 2px);
-    --border-radius-sm: calc(var(--radius) - 4px);
-
     /* Font Family */
     --font-work-sans: 'Work Sans', sans-serif;
-
-    /* Shadows */
-    --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
-    --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
-    --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
+    --color-primary:rgb(255, 230, 0); /* yellow-400 */;
 }
+
 @layer base {
     :root {
-      /* Border Radius */
-        --radius: 0.5rem;
-        --border-radius-lg: var(--radius);
-        --border-radius-md: calc(var(--radius) - 2px);
-        --border-radius-sm: calc(var(--radius) - 4px);
-
-      /* Colors */
-        --color-primary-100: #FFE8F0;
-        --color-primary: #EE2B69;
-        --color-secondary: #FBE843;
-        --color-black-100: #333333;
-        --color-black-200: #141413;
-        --color-black-300: #7D8087;
-        --color-black: #000000;
-        --color-white-100: #F7F7F7;
-        --color-white: #FFFFFF;
-
-        /* Font Family for "work-sans" */
-        --font-work-sans: 'Work Sans', sans-serif;
-        /* Shadows */
-        --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
-        --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
-        --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
+        --color-primary: #EE2B69; /* yellow-400 */
+        --color-primary-100: rgb(255, 230, 0, 0.2); /* yellow-400 */
+        --color-secondary: rgb(0, 0, 0); /* black */
+        --color-white: rgb(255, 255, 255); /* white */
+        --color-black: rgb(0, 0, 0); /* black */
+        --color-black-100: rgb(0, 0, 0, 0.5); /* black-100 */
+        --color-black-200: rgb(0, 0, 0, 0.8); /* black-200 */
+        --color-black-300: rgb(0, 0, 0, 0.3); /* black-300 */
     }
 }
+
+
+@utility pattern {
+    background-image: linear-gradient(
+                to right,
+                transparent 49.5%,
+                rgba(251, 232, 67, 0.2) 49.5%,
+                rgba(251, 232, 67, 0.6) 50.5%,
+                transparent 50.5%
+        );
+        background-size: 5% 100%;
+        background-position: center;
+        background-repeat: repeat-x;
+}
+@utility tag-tri{
+    @apply before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
+}
+
 @layer utilities {
-    .bg-black {
-        background-color: var(--color-black);
-    }
-    .text-white {
-        color: var(--color-white);
-    }
     .pink_container {
-        @apply w-full min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
-        background-color: var(--color-primary);
+        @apply w-full min-h-[530px] flex justify-center items-center flex-col pattern py-10 px-6 bg-primary;
     }
     
 
     .tag {
-        @apply px-6 py-3 font-bold rounded-sm uppercase relative;
+        @apply px-6 py-3 font-bold rounded-sm uppercase relative tag-tri;
         background-color: var(--color-secondary);
         font-family: var(--font-work-sans);
     }
@@ -83,7 +58,7 @@
     }
     
     .sub-heading {
-        @apply font-medium text-[20px] max-w-2xl text-center break-words;
+        @apply font-medium text-[20px] max-w-2xl text-center break-words font-work-sans;
         color: var(--color-white);
     }
 
