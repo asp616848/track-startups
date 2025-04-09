@@ -5,6 +5,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+    
+    /* Colors */
+    --color-primary-100: #FFE8F0;
+    --color-primary: #EE2B69;
+    --color-secondary: #FBE843;
+    --color-black-100: #333333;
+    --color-black-200: #141413;
+    --color-black-300: #7D8087;
+    --color-black: #000000;
+    --color-white-100: #F7F7F7;
+    --color-white: #FFFFFF;
+
+    /* Border Radius */
+    --radius: 0.5rem;
+    --border-radius-lg: var(--radius);
+    --border-radius-md: calc(var(--radius) - 2px);
+    --border-radius-sm: calc(var(--radius) - 4px);
+
+    /* Font Family */
+    --font-work-sans: 'Work Sans', sans-serif;
+
+    /* Shadows */
+    --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+    --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+    --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
+}
 @layer base {
     :root {
       /* Border Radius */
@@ -24,152 +51,21 @@
         --color-white-100: #F7F7F7;
         --color-white: #FFFFFF;
 
-      /* Font Family for "work-sans" */
+        /* Font Family for "work-sans" */
         --font-work-sans: 'Work Sans', sans-serif;
-      /* Shadows */
+        /* Shadows */
         --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
         --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
         --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
     }
 }
-
 @layer utilities {
-    /* Color utilities */
-    .bg-primary {
-        background-color: var(--color-primary);
-    }
-    .bg-primary-100 {
-        background-color: var(--color-primary-100);
-    }
-    .bg-secondary {
-        background-color: var(--color-secondary);
-    }
     .bg-black {
         background-color: var(--color-black);
-    }
-    .bg-black-100 {
-        background-color: var(--color-black-100);
-    }
-    .bg-black-200 {
-        background-color: var(--color-black-200);
-    }
-    .bg-black-300 {
-        background-color: var(--color-black-300);
-    }
-    .bg-white {
-        background-color: var(--color-white);
-    }
-    .bg-white-100 {
-        background-color: var(--color-white-100);
-    }
-    
-    /* Text color utilities */
-    .text-primary {
-        color: var(--color-primary);
-    }
-    .text-primary-100 {
-        color: var(--color-primary-100);
-    }
-    .text-secondary {
-        color: var(--color-secondary);
-    }
-    .text-black {
-        color: var(--color-black);
-    }
-    .text-black-100 {
-        color: var(--color-black-100);
-    }
-    .text-black-200 {
-        color: var(--color-black-200);
-    }
-    .text-black-300 {
-        color: var(--color-black-300);
     }
     .text-white {
         color: var(--color-white);
     }
-    .text-white-100 {
-        color: var(--color-white-100);
-    }
-    
-    
-    /* Border color utilities */
-    .border-primary {
-        border-color: var(--color-primary);
-    }
-    .border-black {
-        border-color: var(--color-black);
-    }
-    
-    /* Font family utility */
-    .font-work-sans {
-        font-family: var(--font-work-sans);
-    }
-    
-    /* Shadow utilities */
-    .shadow-100 {
-        box-shadow: var(--shadow-100);
-    }
-    .shadow-200 {
-        box-shadow: var(--shadow-200);
-    }
-    .shadow-300 {
-        box-shadow: var(--shadow-300);
-    }
-    
-    .tag-tri {
-        @apply relative;
-    }
-    .tag-tri::before {
-        content: '';
-        @apply absolute top-2 left-2;
-        border-top: 10px solid;
-        border-right: 10px solid transparent;
-    }
-    .tag-tri::after {
-        content: '';
-        @apply absolute bottom-2 right-2;
-        border-bottom: 10px solid;
-        border-left: 10px solid transparent;
-    }
-
-    /* Your existing utilities */
-    .flex-between {
-        @apply flex justify-between items-center;
-    }
-
-    .text-30-extrabold {
-        @apply text-[30px] font-extrabold text-white;
-    }
-
-    .text-30-bold {
-        @apply text-[30px] font-bold text-black;
-    }
-
-    .text-30-semibold {
-        @apply font-semibold text-[30px] text-black;
-    }
-
-    .text-26-semibold {
-        @apply font-semibold text-[26px] text-black;
-    }
-
-    .text-24-black {
-        @apply text-[24px] font-black text-black;
-    }
-
-    .text-20-medium {
-        @apply font-medium text-[20px] text-black;
-    }
-
-    .text-16-medium {
-        @apply font-medium text-[16px] text-black;
-    }
-
-    .text-14-normal {
-        @apply font-normal text-sm;
-    }
-
     .pink_container {
         @apply w-full min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
         background-color: var(--color-primary);
@@ -183,12 +79,9 @@
     }
 
     .heading {
-        @apply uppercase px-6 py-3 font-extrabold sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
-        background-color: var(--color-black);
-        color: var(--color-white);
-        font-family: var(--font-work-sans);
+        @apply uppercase px-6 bg-black text-white font-work-sans py-3 font-extrabold sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
     }
-
+    
     .sub-heading {
         @apply font-medium text-[20px] max-w-2xl text-center break-words;
         color: var(--color-white);
