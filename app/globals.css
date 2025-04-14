@@ -8,22 +8,27 @@
 @theme {
     /* Font Family */
     --font-work-sans: 'Work Sans', sans-serif;
-    --color-primary:rgb(255, 230, 0); /* yellow-400 */;
+    --color-primary:rgb(238, 43, 105); /* yellow-400 */;
+    --color-white: rgb(255, 255, 255); /* white */
+    /* Shadows */
+    --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+    --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+    --shadow-300: 2px 2px 0px 2px rgb(238, 43, 105);
 }
 
 @layer base {
     :root {
         --color-primary: #EE2B69; /* yellow-400 */
-        --color-primary-100: rgb(255, 230, 0, 0.2); /* yellow-400 */
+        --color-primary-100: rgb(255, 232, 240);
         --color-secondary: rgb(0, 0, 0); /* black */
         --color-white: rgb(255, 255, 255); /* white */
         --color-black: rgb(0, 0, 0); /* black */
         --color-black-100: rgb(0, 0, 0, 0.5); /* black-100 */
         --color-black-200: rgb(0, 0, 0, 0.8); /* black-200 */
         --color-black-300: rgb(0, 0, 0, 0.3); /* black-300 */
+        --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
     }
 }
-
 
 @utility pattern {
     background-image: linear-gradient(
@@ -40,17 +45,30 @@
 @utility tag-tri{
     @apply before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-black after:border-l-[10px] after:border-l-transparent;
 }
+@utility bg-primary-100{
+    background-color: var(--color-primary-100);
+}
+@utility bg-white-100{
+    background-color: var(--color-white-100);
+}
+@utility text-black-100{
+    color: var(--color-black-100);
+}
+@utility bg-black-200{
+    background-color: var(--color-black-200);
+}
+
 
 @layer utilities {
+    
     .pink_container {
         @apply w-full min-h-[530px] flex justify-center items-center flex-col pattern py-10 px-6 bg-primary;
     }
     
 
     .tag {
-        @apply px-6 py-3 font-bold rounded-sm uppercase relative tag-tri;
+        @apply px-6 py-3 font-bold font-work-sans rounded-sm uppercase relative tag-tri;
         background-color: var(--color-secondary);
-        font-family: var(--font-work-sans);
     }
 
     .heading {
@@ -72,6 +90,15 @@
 
     .card_grid-sm {
         @apply grid sm:grid-cols-2 gap-5;
+    }
+    .flex-between {
+        @apply flex justify-between items-center;
+    }
+    .text-16-medium {
+        @apply font-medium text-[16px] text-black font-work-sans;
+    }
+    .text-26-semibold {
+        @apply font-semibold text-[26px] text-black font-work-sans;
     }
 
     .no-result {
@@ -131,12 +158,11 @@
     }
 
     .login {
-        @apply border-[5px] py-4 relative font-medium hover:shadow-none transition-all duration-500 ;
+        @apply border-[5px] py-4 relative font-medium font-work-sans hover:shadow-none transition-all duration-500 ;
         border-color: var(--color-black);
         background-color: var(--color-white);
         color: var(--color-black);
         box-shadow: var(--shadow-100);
-        font-family: var(--font-work-sans);
     }
 
     /* searchform */
@@ -147,7 +173,7 @@
     }
 
     .search-input {
-        @apply flex-1 font-bold placeholder:font-semibold w-full h-auto outline-none;
+        @apply flex-1 font-bold text-[22px] placeholder:font-semibold w-full h-auto border-none outline-none;
     }
     
     .search-input::placeholder {
@@ -155,26 +181,20 @@
     }
 
     .search-btn {
-        @apply size-[50px] rounded-full flex justify-center items-center;
+        @apply w-[50px] h-[50px] rounded-full flex justify-center items-center text-white;
         background-color: var(--color-black);
     }
 
-    /* startupcard */
     .startup-card {
-        @apply border-[5px] py-6 px-5 rounded-[22px] transition-all duration-500;
-        background-color: var(--color-white);
-        border-color: var(--color-black);
-        box-shadow: var(--shadow-200);
+        @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
     }
 
     .startup-card_date {
-        @apply font-medium text-[16px] px-4 py-2 rounded-full;
-        background-color: var(--color-primary-100);
+        @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
     }
 
     .startup-card_desc {
-        @apply font-normal text-[16px] line-clamp-2 my-3 break-all;
-        color: var(--color-black-100);
+        @apply font-work-sans text-[16px] line-clamp-2 my-3 text-black-100 break-all;
     }
 
     .startup-card_img {
@@ -182,14 +202,11 @@
     }
 
     .startup-card_btn {
-        @apply rounded-full font-medium text-[16px] px-5 py-3 ;
-        background-color: var(--color-black-200);
-        color: var(--color-white);
+        @apply rounded-full bg-black-200 font-work-sans text-[16px] text-white px-5 py-3;
     }
 
     .startup-card_skeleton {
-        @apply w-full h-96 rounded-[22px];
-        background-color: #A1A1AA; /* zinc-400 */
+        @apply w-full h-96 rounded-[22px] bg-zinc-400;
     }
 
     /* startupform */
@@ -238,6 +255,18 @@
         color: var(--color-black-300);
     }
 
+    .text-30-semibold {
+        @apply font-semibold text-[30px] text-black;
+    }
+    .card_grid {
+        @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+    }
+    
+
+    .card_grid-sm {
+        @apply grid sm:grid-cols-2 gap-5;
+    }
+
     .startup-form_btn {
         @apply border-[4px] rounded-full p-5 min-h-[70px] w-full font-bold text-[18px];
         background-color: var(--color-primary);
@@ -273,8 +302,7 @@
     }
     /* Navbar specific styles */
     .navbar {
-        @apply px-5 py-4 bg-white border-b-[3px] border-black shadow sticky top-0 z-50;
-        font-family: var(--font-work-sans);
+        @apply px-5 py-4 bg-white border-b-[3px] border-black shadow sticky top-0 z-50 font-work-sans;
     }
     
     .navbar-container {
@@ -301,6 +329,11 @@
     .navbar-link:hover::after {
         @apply w-full;
     }
+    
+    .link {
+        text-decoration: none !important;
+    }
+    
     
     .navbar-button {
         @apply border-[3px] border-black  px-5 py-2 rounded-full font-bold text-black shadow
