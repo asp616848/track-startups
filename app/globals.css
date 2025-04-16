@@ -150,6 +150,11 @@
         @apply p-0 focus-visible:ring-0 rounded-full drop-shadow-md;
         background: none;
     }
+    .icon-text-group {
+        display: flex;
+        align-items: center;
+        gap: 0; /* Removes space between icon and text */
+    }
 
     .dropdown-menu {
         @apply w-56 border-[5px] p-5 rounded-2xl;
@@ -190,7 +195,7 @@
     }
 
     .startup-card_date {
-        @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
+        @apply font-work-sans text-[16px] bg-primary-100 px-4 py-2 rounded-full group-hover:bg-white-100;
     }
 
     .startup-card_desc {
@@ -209,7 +214,6 @@
         @apply w-full h-96 rounded-[22px] bg-zinc-400;
     }
 
-    /* startupform */
     .startup-form {
         @apply max-w-2xl mx-auto my-10 space-y-8 px-6;
         background-color: var(--color-white);
@@ -259,7 +263,7 @@
         @apply font-semibold text-[30px] text-black;
     }
     .card_grid {
-        @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+        @apply list-none grid md:grid-cols-3 sm:grid-cols-2 gap-5;
     }
     
 
