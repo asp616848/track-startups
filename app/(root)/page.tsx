@@ -12,7 +12,7 @@ export default async function Home({searchParams}:
     {
       _createdAt:new Date(),
       views:55,
-      author:{_id:3},
+      author:{_id:3, name:"Abhi"},
       _id:3,
       description:"This description",
       image:'https://easydrawingguides.com/wp-content/uploads/2024/05/how-to-draw-zoro-from-one-piece-featured-image-1200.png',

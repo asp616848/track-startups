@@ -5,6 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @theme {
     /* Font Family */
     --font-work-sans: 'Work Sans', sans-serif;
@@ -60,6 +61,9 @@
 
 
 @layer utilities {
+    .text-primary {
+        @apply text-primary;
+    }
     
     .pink_container {
         @apply w-full min-h-[530px] flex justify-center items-center flex-col pattern py-10 px-6 bg-primary;
@@ -95,7 +99,7 @@
         @apply flex justify-between items-center;
     }
     .text-16-medium {
-        @apply font-medium text-[16px] text-black font-work-sans;
+        @apply text-[16px] text-black font-work-sans ;
     }
     .text-26-semibold {
         @apply font-semibold text-[26px] text-black font-work-sans;
@@ -332,10 +336,6 @@
     
     .navbar-link:hover::after {
         @apply w-full;
-    }
-    
-    .link {
-        text-decoration: none !important;
     }
     
     

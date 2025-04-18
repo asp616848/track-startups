@@ -19,7 +19,7 @@ type Startup = {
     views: number;
     _createdAt: string;
     author: Author;
-};  
+};
 export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
@@ -45,37 +45,37 @@ return (
     </div>
 
     <div className="flex-between mt-5 gap-5">
-        <div className="flex-1">
-        <Link href={`/user/${author?._id}`}>
-            <p className="text-16-medium line-clamp-1">{author?.name}</p>
+    <div className="flex">
+        <Link href={`/user/${author?._id}`} style={{ textDecoration: "none" }}>
+        <p className="text-16-medium line-clamp-1 mb-0">{author?.name}</p>
         </Link>
-        <Link href={`/startup/${_id}`}>
+        <Link href={`/startup/${_id}`} style={{ textDecoration: "none" }}>
             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
         </Link>
-        </div>
-        <Link href={`/user/${author?._id}`}>
-        <Image
-            src={author?.image!}
-            alt={author?.name!}
-            width={48}
-            height={48}
-            className="rounded-full"
-        />
-        </Link>
+    </div>
+    <Link href={`/user/${author?._id}`} >
+    <Image
+        src={author?.image!}
+        alt={author?.name!}
+        width={48}
+        height={48}
+        className="rounded-full"
+    />
+    </Link>
     </div>
 
-    <Link href={`/startup/${_id}`}>
+    <Link className="no-underline" href={`/startup/${_id}`} style={{ textDecoration: "none" }}>
         <p className="startup-card_desc ">{description}</p>
 
         <img src={image} alt="placeholder" className="startup-card_img" />
     </Link>
 
     <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category?.toLowerCase()}`}>
+        <Link href={`/?query=${category?.toLowerCase()}` } style={{ textDecoration: "none" }}>
         <p className="text-16-medium">{category}</p>
         </Link>
         <Button className="startup-card_btn" asChild>
-        <Link href={`/startup/${_id}`}>Details</Link>
+        <Link href={`/startup/${_id}`} style={{ textDecoration: "none" }}>Details</Link>
         </Button>
     </div>
     </li>

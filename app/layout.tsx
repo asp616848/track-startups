@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Work_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "easymde/dist/easymde.min.css"
 
 const workSans = localFont({
   src: [
