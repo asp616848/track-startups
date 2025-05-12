@@ -10,6 +10,7 @@ type Author = {
     name: string;
     image: string;
 };
+
 type Startup = {
     _id: string;
     title: string;

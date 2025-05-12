@@ -1,6 +1,9 @@
 import Image from "next/image";
 import SearchForm from "../../components/SearchForm";
-import StartupCard from "@/components/StartupCard";
+import StartupCard, {StartupTypeCard} from "@/components/StartupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUPS_QUERY } from "@/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 export default async function Home({searchParams}:
     {searchParams: Promise<{query?:string}>}
@@ -8,19 +11,10 @@ export default async function Home({searchParams}:
 
   const query = (await searchParams).query;
 
-  const post = [
-    {
-      _createdAt:new Date(),
-      views:55,
-      author:{_id:3, name:"Abhi"},
-      _id:3,
-      description:"This description",
-      image:'https://easydrawingguides.com/wp-content/uploads/2024/05/how-to-draw-zoro-from-one-piece-featured-image-1200.png',
-      category:'Robots',
-      title: 'We Robots'
-    }
-  ]
+  // const post = await client.fetch(STARTUPS_QUERY)
+  const {data: post} = await sanityFetch({query:STARTUPS_QUERY})
 
+  console.log(JSON.stringify(post)) 
 
   return (
     <>
@@ -37,14 +31,15 @@ export default async function Home({searchParams}:
 
         <ul className="card_grid  mt-7">
           {post.length > 0 ? (
-            post.map((post, index) => (
-              <StartupCard key={post._id || index} post={post} />
+            post.map((post: StartupTypeCard) => (
+              <StartupCard key={post._id} post={post} />
             ))
           ) : (
             <p className="no-results">No Startups found</p>
           )}
         </ul>
       </section>
+      <SanityLive/>
     </>
   );
 }

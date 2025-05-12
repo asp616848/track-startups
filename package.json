@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "npm@10.9.2",
   "overrides": {
@@ -29,6 +32,7 @@
     "react-dom": "^19.1.0",
     "sanity": "^3.85.1",
     "sanity-plugin-markdown": "^5.1.0",
+    "server-only": "^0.0.1",
     "styled-components": "^6.1.17",
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7",
