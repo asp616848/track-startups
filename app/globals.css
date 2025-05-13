@@ -69,9 +69,6 @@
         @apply w-full min-h-[530px] flex justify-center items-center flex-col pattern py-10 px-6 bg-primary;
     }
     
-    .tag-tri{
-        @apply before:content-[''] before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-t-black before:border-r-[10px] before:border-r-transparent after:content-[''] after:absolute after:bottom-2 after:right-2 after:border-b-[10px] after:border-b-white after:border-l-[10px] after:border-l-transparent;
-    }
     .tag {
         @apply px-6 py-3 font-bold font-work-sans rounded-sm uppercase relative tag-tri;
         background-color: var(--color-secondary);
