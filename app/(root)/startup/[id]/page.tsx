@@ -4,6 +4,9 @@ import React from 'react'
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
+import markdownit from 'markdown-it';
+
+const md = markdownit();
 
 export const experimental_ppr = true;
 
@@ -11,6 +14,7 @@ const page = async({params}: { params : Promise<{id:string}>}) =>{
     const id = (await params).id;
     const {data: post} = await sanityFetch({query: DATA_QUERY, params:{id}})
     console.log(post?._createdAt)
+    const parsedContent = md.render(post?.pitch || "_")
     return (
         <>
         <section className='pink_container !min-h-[230px]'>
@@ -44,7 +48,7 @@ const page = async({params}: { params : Promise<{id:string}>}) =>{
             <p className='category-tag'>{post.category}</p>
             </div>
             <h3 className='text-30-bold'> Pitch Details</h3>
-            
+
             </div>
         </section>
         </>
