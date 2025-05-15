@@ -25,3 +25,9 @@ export const DATA_QUERY = defineQuery(`*[_type == 'startup' && _id == $id][0]{
     , views, description, category, image, pitch
 }
 `);
+
+export const VIEW_QUERY = defineQuery(
+  `*[_type== "startup" && _id == $id][0]{
+    _id,views
+  }`
+)
