@@ -3,14 +3,18 @@ import Ping from "@/components/Ping";
 import { VIEW_QUERY } from '@/lib/queries';
 import {client} from "@/sanity/lib/client"
 import { writeClient } from '@/sanity/lib/write-client';
+import  {after} from "next/server";
 
 const View = async ({id}:{id:string}) => {
     
     const {views:totalViews} = await client.withConfig({useCdn:false}).fetch(VIEW_QUERY, {id})
-    await writeClient
+    
+    after (async()=>await writeClient
     .patch(id)
     .set({views:totalViews+1})
-    .commit();
+    .commit()
+    )
+
     return (
     <div className='view-container'>
         <div className='absolute -top-2 -right-2'>
