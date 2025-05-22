@@ -1,49 +1,51 @@
-// config file for authentication
 import NextAuth from 'next-auth';
-import GitHubProvider from "next-auth/providers/github";
-import Github from "next-auth/providers/github";
+import GitHubProvider from 'next-auth/providers/github';
 import { AUTHOR_BY_ID_QUERY } from './lib/queries';
 import { client } from './sanity/lib/client';
 import { writeClient } from './sanity/lib/write-client';
 
-export const {handlers, signIn, signOut, auth} = NextAuth({
-    providers: [
-        // GitHubProvider({  // this commented part is given in documentation but me following tutorial for now
-        //     clientId: process.env.GITHUB_ID,
-        //     clientSecret: process.env.GITHUB_SECRET
-        // })
-        Github
-    ],
-    callbacks:{
-        async signIn({user:{name, email, image}, account, profile:{id, login, bio}}){
-            const existingUser = await client.fetch(AUTHOR_BY_ID_QUERY, {id : id});
-            if(!existingUser){
-                await writeClient.create({
-                    _type: 'author',
-                    id: id,
-                    name: name,
-                    username: login,
-                    email:  email,
-                    image:  image,
-                    bio: bio || "",
-                });
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+  ],
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      const { name, email, image } = user;
+      const { id, login, bio } = profile ?? {};
 
-            }
-            return true;
-        },
-        async jwt({token, account, profile}){
-            if(account && profile)
-            {
-                const user = await client.fetch(AUTHOR_BY_ID_QUERY, {id: profile?.id});
+      const sanityId = `author.${id}`;
+      const existingUser = await client.fetch(AUTHOR_BY_ID_QUERY, { id: sanityId });
 
-                token.id = user._id;
-            }
-            return token;
-        }
+      if (!existingUser) {
+        await writeClient.create({
+          _id: sanityId,
+          _type: 'author',
+          name,
+          username: login,
+          email,
+          image,
+          bio: bio || '',
+        });
+      }
 
-        async session (session, token) {
-            Object.assign(session, {id:token.id});
-            return session;
-        }
-    }
+      return true;
+    },
+
+    async jwt({ token, account, profile }) {
+      if (account && profile) {
+        const sanityId = `author.${profile.id}`;
+        const user = await client.fetch(AUTHOR_BY_ID_QUERY, { id: sanityId });
+        token.id = user?._id;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      session.id = token.id;
+      return session;
+    },
+  },
 });

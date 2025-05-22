@@ -15,7 +15,6 @@ export const experimental_ppr = true;
 const page = async({params}: { params : Promise<{id:string}>}) =>{
     const id = (await params).id;
     const {data: post} = await sanityFetch({query: DATA_QUERY, params:{id}})
-    console.log(post?._createdAt)
     const parsedContent = md.render(post?.pitch || "_")
     return (
         <>
