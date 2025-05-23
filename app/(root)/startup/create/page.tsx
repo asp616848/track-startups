@@ -5,7 +5,6 @@ import { redirect } from 'next/dist/server/api-utils';
 
 const page = async() => {
     const session = await auth();
-    session = 0;
     if(!session) redirect("/");
     return (
     <>
